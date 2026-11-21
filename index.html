@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Трекер событий с обратным отсчётом">
+  <title>Трекер событий</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📅</text></svg>">
+</head>
+<body>
+  <main class="app">
+    <header class="app__header">
+      <h1 class="app__title" id="appTitle">📅 Трекер событий</h1>
+      <div class="header-actions">
+        <button class="lang-toggle" id="langToggle" type="button"
+                aria-label="Сменить язык">EN</button>
+        <button class="theme-toggle" id="themeToggle" type="button"
+                aria-label="Переключить тему">◐</button>
+      </div>
+    </header>
+
+    <form class="form" id="eventForm" aria-label="Форма добавления события">
+      <input class="form__input" type="text" id="titleInput"
+             placeholder="Название события" maxlength="80" required
+             aria-label="Название события">
+      <select class="form__input form__select" id="categorySelect"
+              aria-label="Категория">
+        <option value="personal">🌿 Личное</option>
+        <option value="work">💼 Работа</option>
+        <option value="birthday">🎂 День рождения</option>
+        <option value="other">📌 Другое</option>
+      </select>
+      <input class="form__input form__date" type="date" id="dateInput"
+             required aria-label="Дата события">
+      <button class="form__submit" id="addBtn" type="submit">Добавить</button>
+    </form>
+
+    <nav class="filters" id="filters" aria-label="Фильтры событий">
+      <button class="filters__btn filters__btn--active" type="button"
+              data-filter="all">Все</button>
+      <button class="filters__btn" type="button" data-filter="upcoming">Предстоящие</button>
+      <button class="filters__btn" type="button" data-filter="today">Сегодня</button>
+      <button class="filters__btn" type="button" data-filter="past">Прошедшие</button>
+      <button class="filters__btn filters__btn--sort" type="button"
+              id="sortBtn" aria-label="Сортировка по дате">По дате ↑</button>
+    </nav>
+
+    <ul class="events" id="eventsList" aria-live="polite"></ul>
+
+    <div class="empty" id="emptyState" hidden>
+      <p class="empty__icon">🗂️</p>
+      <p class="empty__text" id="emptyText">Событий пока нет — добавьте первое сверху</p>
+    </div>
+
+    <footer class="footer">
+      <p class="footer__stats" id="stats">Всего: 0 · предстоящих: 0 · прошедших: 0</p>
+      <button class="footer__clear" id="clearPastBtn" type="button">Очистить прошедшие</button>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
